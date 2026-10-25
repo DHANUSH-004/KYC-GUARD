@@ -3,19 +3,11 @@ import java.time.Period;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class PRG1 {
+// ---------------- Main class (execution starts here) ----------------
+public class KYCVERIFICATION{
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-
-        System.out.print("Enter access password: ");
-        String password = sc.nextLine();
-        if (!password.equals("KYC123")) {
-            System.out.println("Access Denied!");
-            sc.close();
-            return;
-        }
 
         try {
             KycProfile profile = new KycProfile();
@@ -47,7 +39,7 @@ public class PRG1 {
         }
     }
 
-
+    // Age verification pass
     static int checkAge(KycProfile profile) throws UnderageApplicantException {
         int age = Period.between(profile.getDob(), LocalDate.now()).getYears();
         if (age < 18) {
@@ -58,7 +50,7 @@ public class PRG1 {
     }
 }
 
-
+// ---------------- Custom checked exceptions ----------------
 class InvalidIdentityDocumentException extends Exception {
     InvalidIdentityDocumentException(String msg) {
         super(msg);
@@ -71,20 +63,21 @@ class UnderageApplicantException extends Exception {
     }
 }
 
-
+// ---------------- Customer data (encapsulation) ----------------
+// Every setter validates the value BEFORE storing it.
 class KycProfile {
     private String name;
     private LocalDate dob;
     private String aadhaarNumber;
     private String panNumber;
 
-
+    // Getters
     String getName()          { return name; }
     LocalDate getDob()        { return dob; }
     String getAadhaarNumber() { return aadhaarNumber; }
     String getPanNumber()     { return panNumber; }
 
-
+    // Setters with validation
     void setName(String name) throws InvalidIdentityDocumentException {
         name = name.trim();
         if (!name.matches("[A-Za-z ]+")) {

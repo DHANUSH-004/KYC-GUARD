@@ -1,11 +1,5 @@
 "use strict";
 
-const ACCESS_PASSWORD = "KYC123";
-
-const gate = document.getElementById("gate");
-const gateMsg = document.getElementById("gateMsg");
-const passwordInput = document.getElementById("password");
-const unlockBtn = document.getElementById("unlockBtn");
 const formCard = document.getElementById("kycForm");
 const kycForm = document.getElementById("kyc");
 const resultCard = document.getElementById("result");
@@ -25,26 +19,7 @@ const errorLabels = {
   pan: document.getElementById("panError"),
 };
 
-/* ---------- Stage 1: access gate ---------- */
-
-function unlock() {
-  if (passwordInput.value === ACCESS_PASSWORD) {
-    gate.classList.add("hidden");
-    formCard.classList.remove("hidden");
-    fields.name.focus();
-  } else {
-    gateMsg.classList.remove("hidden");
-    passwordInput.value = "";
-    passwordInput.focus();
-  }
-}
-
-unlockBtn.addEventListener("click", unlock);
-passwordInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") unlock();
-});
-
-/* ---------- Stage 2: verification ---------- */
+/* ---------- Verification ---------- */
 
 function setFieldError(key, message) {
   fields[key].classList.add("invalid");
