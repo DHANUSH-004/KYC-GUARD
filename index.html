@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KYC GUARD — Identity Verification</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+
+    <!-- Stage 1 · Access gate -->
+    <section id="gate" class="card">
+      <div class="brand">
+        <div class="logo">🛡️</div>
+        <h1>KYC&nbsp;GUARD</h1>
+        <p class="tagline">Identity verification terminal</p>
+      </div>
+
+      <label for="password">Enter access password</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="off" />
+      <button id="unlockBtn" class="btn primary">Unlock terminal</button>
+      <p id="gateMsg" class="gate-error hidden">Access Denied!</p>
+    </section>
+
+    <!-- Stage 2 · KYC form -->
+    <section id="kycForm" class="card hidden">
+      <div class="brand">
+        <div class="logo">🛡️</div>
+        <h1>KYC&nbsp;GUARD</h1>
+        <p class="tagline">Enter applicant details</p>
+      </div>
+
+      <form id="kyc" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" placeholder="e.g. Dhanush Kumar" autocomplete="off" />
+          <p class="error" id="nameError"></p>
+        </div>
+
+        <div class="field">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" />
+          <p class="error" id="dobError"></p>
+        </div>
+
+        <div class="field">
+          <label for="aadhaar">Aadhaar number</label>
+          <input type="text" id="aadhaar" placeholder="1234 5678 9012" inputmode="numeric" maxlength="14" autocomplete="off" />
+          <p class="error" id="aadhaarError"></p>
+        </div>
+
+        <div class="field">
+          <label for="pan">PAN number</label>
+          <input type="text" id="pan" placeholder="ABCDE1234F" maxlength="10" autocomplete="off" />
+          <p class="error" id="panError"></p>
+        </div>
+
+        <div id="banner" class="banner hidden"></div>
+
+        <button type="submit" class="btn primary">Verify identity</button>
+      </form>
+    </section>
+
+    <!-- Stage 3 · Result -->
+    <section id="result" class="card hidden"></section>
+
+    <p class="footer">KYC GUARD · Java + Web demo · Hosted on GitHub Pages</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
